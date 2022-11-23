@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlipperSkript : MonoBehaviour
+public class Flippers : MonoBehaviour
 {
     public float restPosition = 0f;
     public float pressedPosition = 45f;
@@ -10,7 +10,7 @@ public class FlipperSkript : MonoBehaviour
     public float flipperDamper = 150f;
     HingeJoint hinge;
 
-    public string imputName;
+    public bool inputRight;
 
     // Start is called before the first frame update
     void Start()
@@ -28,12 +28,29 @@ public class FlipperSkript : MonoBehaviour
         spring.damper = flipperDamper;
 
 
-        if(Input.GetAxis(imputName) == 1)
+        if (inputRight)
         {
-            spring.targetPosition = pressedPosition;
+            if (Input.GetKey(KeyCode.D))
+            {
+                spring.targetPosition = pressedPosition;
+
+            }
+            else
+            {
+                spring.targetPosition = restPosition;
+            }
         }
-        else{
-            spring.targetPosition = restPosition;
+        else
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                spring.targetPosition = pressedPosition;
+
+            }
+            else
+            {
+                spring.targetPosition = restPosition;
+            }
         }
         hinge.spring = spring;
         hinge.useLimits = true;

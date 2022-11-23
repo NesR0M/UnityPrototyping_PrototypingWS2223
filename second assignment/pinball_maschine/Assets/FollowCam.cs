@@ -23,7 +23,7 @@ public class FollowCam : MonoBehaviour
         {
             transform.position = myPlay.position + myPos;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             GameObject[] newBall = GameObject.FindGameObjectsWithTag("Ball");
             myPlay = newBall[0].transform;

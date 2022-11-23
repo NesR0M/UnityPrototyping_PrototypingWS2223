@@ -11,7 +11,7 @@ public class Ball : MonoBehaviour
     public int speed;
     private Color objectColor;
     private bool started;
-    
+
 
     [SerializeField] float spawnValue;
 
@@ -25,7 +25,7 @@ public class Ball : MonoBehaviour
         gameObject.GetComponent<Renderer>().material.color = objectColor;
         gameObject.GetComponent<Light>().color = objectColor;
 
-        started = false; 
+        started = false;
     }
 
     // Update is called once per frame
@@ -45,7 +45,7 @@ public class Ball : MonoBehaviour
         }
         */
 
-        if(Input.GetKeyUp(KeyCode.Space))
+        if (Input.GetKeyUp(KeyCode.Space))
         {
             Booster();
         }
@@ -53,7 +53,7 @@ public class Ball : MonoBehaviour
 
     }
 
-    void OnCollisionEnter(Collision collision) 
+    void OnCollisionEnter(Collision collision)
     {
         GetComponent<AudioSource>().Play(); //Ballgeraeusch
 

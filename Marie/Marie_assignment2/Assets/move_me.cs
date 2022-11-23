@@ -24,7 +24,36 @@ public class move_me : MonoBehaviour
     {  JointSpring spring = new JointSpring ();
     spring.spring =  hitStrength;
     spring.damper = flipperDamper;
-        if(Input.GetAxis(inputName)==1)
+
+        if(inputName == "RFlipper")
+        {
+            if (Input.GetKey(KeyCode.D))
+            {
+                spring.targetPosition = pressedPosition;            }
+            else
+            {
+                spring.targetPosition = restPosition;
+            }
+
+
+        } else if (inputName == "LFlipper")
+        {
+            if (Input.GetKey(KeyCode.A))
+            {
+                spring.targetPosition = pressedPosition;
+            }
+            else
+            {
+                spring.targetPosition = restPosition;
+            }
+        }
+        hinge.spring = spring;
+        hinge.useLimits = true;
+
+
+
+        /*
+        if (Input.GetAxis(inputName)==1)
         {
             spring.targetPosition = pressedPosition;
         }
@@ -33,5 +62,6 @@ public class move_me : MonoBehaviour
         }
         hinge.spring = spring;
         hinge.useLimits = true;
+        */
     }
 }

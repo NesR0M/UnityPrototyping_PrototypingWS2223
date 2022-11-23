@@ -20,7 +20,7 @@ public class FollowMe : MonoBehaviour
         {
             transform.position = sphere.position + translation;
         }
-        catch (Exception e)
+        catch (Exception)
         {
             GameObject[] newBall = GameObject.FindGameObjectsWithTag("Sphere");
             sphere = newBall[0].transform;
