@@ -1,12 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Ball : MonoBehaviour
 {
     public AudioClip saw;
     public GameObject prefab;
+    public int speed;
     private Color objectColor;
+    private bool started;
+    
 
     [SerializeField] float spawnValue;
 
@@ -19,6 +24,8 @@ public class Ball : MonoBehaviour
         objectColor = new Color(Random.Range(0F, 1F), Random.Range(0F, 1F), Random.Range(0F, 1F));
         gameObject.GetComponent<Renderer>().material.color = objectColor;
         gameObject.GetComponent<Light>().color = objectColor;
+
+        started = false; 
     }
 
     // Update is called once per frame
@@ -26,13 +33,19 @@ public class Ball : MonoBehaviour
     {
         if (gameObject.transform.position.y < -spawnValue)
         {
-            //Debug.Log("Time to DIE!!");
             SpawnANewBall();
             Destroy(gameObject);
             //Respawn();
         }
 
+        /*
         if (Input.GetAxis("Booster") == 1)
+        {
+            Booster();
+        }
+        */
+
+        if(Input.GetKeyUp(KeyCode.Space))
         {
             Booster();
         }
@@ -42,7 +55,7 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision collision) 
     {
-        GetComponent<AudioSource>().Play(); //Ballgeräusch
+        GetComponent<AudioSource>().Play(); //Ballgeraeusch
 
 
         if (collision.gameObject.tag == "Circles")
@@ -73,7 +86,12 @@ public class Ball : MonoBehaviour
 
     void Booster()
     {
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.right * 2);
+        if (!started)
+        {
+            Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(Vector3.right * speed, ForceMode.Impulse);
+
+            started = true;
+        }
     }
 }

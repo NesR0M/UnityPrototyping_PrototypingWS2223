@@ -191,8 +191,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db292b5c8ad71548a210cd597533fe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saw: {fileID: 8300000, guid: 97e2f8b09cd29cb40b1c6db2982b513b, type: 3}
+  saw: {fileID: 8300000, guid: 186fb2153be05a5479a3884de91829b3, type: 3}
   prefab: {fileID: 6334907190508171046}
+  speed: 20
   spawnValue: 1
 --- !u!82 &2018360887
 AudioSource:
