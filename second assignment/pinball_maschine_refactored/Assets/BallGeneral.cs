@@ -7,7 +7,6 @@ public class BallGeneral : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -16,6 +15,7 @@ public class BallGeneral : MonoBehaviour
         if ((GetComponent<Rigidbody>() != null) && GetComponent<Rigidbody>().IsSleeping())
         {
             GetComponent<Rigidbody>().WakeUp();
+
         }
     }
 }
