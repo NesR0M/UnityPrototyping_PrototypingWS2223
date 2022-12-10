@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement_BM : MonoBehaviour
 {
@@ -23,19 +24,19 @@ public class PlayerMovement_BM : MonoBehaviour
    
     void Update()
     {
-        MyMovement();
-        MyRotate();
+        Body();
+        Head();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Lobby")
         {
-            RotateHead();
+            RotatePlayer();
         }
     }
 
-    void MyMovement()
+    void Body()
     {
         //referencing the input axis from the input manager
         float horizontalMove = Input.GetAxis("Horizontal");
@@ -52,7 +53,7 @@ public class PlayerMovement_BM : MonoBehaviour
         _controller.Move(move * Speed * Time.deltaTime + gravityMove * Speed * Time.deltaTime); //move the _controller + add gravity
     }
 
-    void MyRotate()
+    void Head()
     {
         //referencing the input axis from the input manager
         float horizontalRotation = Input.GetAxis("Mouse X");
@@ -63,21 +64,9 @@ public class PlayerMovement_BM : MonoBehaviour
 
     }
 
-    void RotateHead()
+    void RotatePlayer()
     {
-        Debug.Log("Head should rotate");
-
-        /*
-         * Vector3 targetDirection = toLookAt.position - transform.position;
-         * Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, Speed, 0.0f);
-         * transform.rotation = Quaternion.LookRotation(newDirection);
-         * Camera.main.transform.rotation = Quaternion.LookRotation(newDirection);
-        */
-
-        //Vector3 bodyRotation = new Vector3(0.956178606f, 172.906647f, 359.780212f);
-        //Vector3 cameraRotation = new Vector3(0.0267419815f, 1.4024086f, 0.150000006f);
-
-        transform.LookAt(toLookAt);
+        transform.LookAt(new Vector3(toLookAt.position.x, transform.position.y, toLookAt.position.z));
         Camera.main.transform.LookAt(toLookAt);
     }
 
