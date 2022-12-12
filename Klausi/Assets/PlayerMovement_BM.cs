@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.GraphicsBuffer;
 
 public class PlayerMovement_BM : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerMovement_BM : MonoBehaviour
 
     public Transform toLookAt;
 
+    public bool visitedHCIInfoscreenBefore = false;
+
     void Start()
     {
         _controller = GetComponent<CharacterController>();
@@ -30,9 +33,14 @@ public class PlayerMovement_BM : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Lobby")
+        if (other.tag == "Lobby")
         {
             RotatePlayer();
+        }
+
+        if (other.tag == "changeRoom" && visitedHCIInfoscreenBefore)
+        {
+            SceneManager.LoadScene("HCI_LAB_ROOM");
         }
     }
 
@@ -69,7 +77,6 @@ public class PlayerMovement_BM : MonoBehaviour
         transform.LookAt(new Vector3(toLookAt.position.x, transform.position.y, toLookAt.position.z));
         Camera.main.transform.LookAt(toLookAt);
     }
-
 
 
 }
