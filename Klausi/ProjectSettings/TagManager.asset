@@ -9,6 +9,9 @@ TagManager:
   - FloorLights
   - FloorLight
   - changeRoom
+  - BackgroundMusic
+  - floor
+  - HCI_Infoscreen_Trigger
   layers:
   - Default
   - TransparentFX
